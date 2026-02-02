@@ -21,7 +21,7 @@ function GuessResults({ guesses }) {
   });
 
   return (
-    <div class="guess-results">
+    <div className="guess-results">
       {filledGuesses.map((filledGuess, index) => (
         <Guess key={index} guess={filledGuess} />
       ))}
