@@ -1,11 +1,17 @@
 import React from 'react';
 
-function Guess({ guess }) {
+import { checkGuess } from '../../game-helpers';
+
+function Guess({ guess, answer }) {
+  const result = checkGuess(guess, answer);
+
   return (
     <p className="guess">
-      {guess.map((letter, index) => (
-        <span key={index} className="cell">{letter}</span>
-      ))}
+      {guess.split('').map((char, index) => {
+        return (
+          <span key={index} className={`cell ${char !== ' ' ? result[index].status : ''}`}>{char}</span>
+        );
+      })}
     </p>
   );
 }

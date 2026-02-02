@@ -6,24 +6,15 @@ import { range } from '../../utils';
 import { NUM_OF_GUESS_LENGTH } from '../../constants';
 import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
 
-function emptyGuesses() {
-  return range(0, NUM_OF_GUESSES_ALLOWED).map(() => {
-    return range(0, NUM_OF_GUESS_LENGTH).map(() => '');
-  });
-}
-
-function GuessResults({ guesses }) {
-  const filledGuesses = emptyGuesses().map((filledGuess, index) => {
-    if (guesses[index]) {
-      return guesses[index].split('');
-    }
-    return filledGuess;
+function GuessResults({ guesses, answer }) {
+  const filledGuesses = range(0, NUM_OF_GUESSES_ALLOWED).map((index) => {
+    return guesses[index] ?? ''.padStart(NUM_OF_GUESS_LENGTH);
   });
 
   return (
     <div className="guess-results">
-      {filledGuesses.map((filledGuess, index) => (
-        <Guess key={index} guess={filledGuess} />
+      {filledGuesses.map((guess, index) => (
+        <Guess key={index} guess={guess} answer={answer} />
       ))}
     </div>
   );
