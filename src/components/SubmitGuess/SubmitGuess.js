@@ -1,16 +1,17 @@
 import { useState } from 'react';
 
+import { NUM_OF_GUESS_LENGTH } from '../../constants';
+
 function SubmitGuess({ addGuess }) {
 
   const [guess, setGuess] = useState('');
 
-  const requiredGuesLength = 5;
-  const helpText = `Please enter exactly ${requiredGuesLength} characters.`;
+  const helpText = `Please enter exactly ${NUM_OF_GUESS_LENGTH} characters.`;
 
   function handleSubmit(event) {
     event.preventDefault();
 
-    if (guess.length !== requiredGuesLength) {
+    if (guess.length !== NUM_OF_GUESS_LENGTH) {
       return window.alert(helpText);
     }
 
@@ -31,8 +32,8 @@ function SubmitGuess({ addGuess }) {
           event.target.setCustomValidity("");
         }}
         required={true}
-        pattern={`^[A-Z]{${requiredGuesLength}}$`}
-        maxLength={requiredGuesLength}
+        pattern={`^[A-Z]{${NUM_OF_GUESS_LENGTH}}$`}
+        maxLength={NUM_OF_GUESS_LENGTH}
         onInvalid={(event) => {
           event.target.setCustomValidity(helpText);
         }}
