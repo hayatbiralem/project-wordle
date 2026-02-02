@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function SubmitGuess() {
+function SubmitGuess({ addGuess }) {
 
   const [guess, setGuess] = useState('');
 
@@ -16,26 +16,31 @@ function SubmitGuess() {
 
     console.log({ guess });
 
+    addGuess(guess);
+
     setGuess('');
   }
 
-  return <form className="guess-input-wrapper" onSubmit={handleSubmit}>
-    <label htmlFor="guess-input">Enter guess:</label>
-    <input id="guess-input" type="text" value={guess}
-      onChange={(event) => {
-        setGuess(event.target.value.toUpperCase());
-        event.target.setCustomValidity("");
-      }}
-      required={true}
-      pattern={`^[A-Z]{${requiredGuesLength}}$`}
-      maxLength={requiredGuesLength}
-      onInvalid={(event) => {
-        event.target.setCustomValidity(helpText);
-      }}
-      autoComplete="off"
-    />
-    <div className="guess-help">{helpText}</div>
-  </form>;
+  return (
+    <form className="guess-input-wrapper" onSubmit={handleSubmit}>
+      <label htmlFor="guess-input">Enter guess:</label>
+      <input id="guess-input" type="text" value={guess}
+        onChange={(event) => {
+          const nextGuess = event.target.value.toUpperCase();
+          setGuess(nextGuess);
+          event.target.setCustomValidity("");
+        }}
+        required={true}
+        pattern={`^[A-Z]{${requiredGuesLength}}$`}
+        maxLength={requiredGuesLength}
+        onInvalid={(event) => {
+          event.target.setCustomValidity(helpText);
+        }}
+        autoComplete="off"
+      />
+      <div className="guess-help">{helpText}</div>
+    </form>
+  );
 }
 
 export default SubmitGuess;
