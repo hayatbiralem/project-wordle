@@ -292,3 +292,21 @@ h1 {
   color: var(--color-white);
   background-color: var(--color-warning);
 }
+
+.restart-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: 700;
+  border-radius: 0.25em;
+  padding: 0.5em 0.75em;
+  border: 1px solid currentColor;
+  margin-top: 1.5rem;
+  background-color: rgba(0, 0, 0, 0.125);
+}
+
+.restart-button:hover {
+  color: var(--color-success);
+  background-color: var(--color-white);
+}

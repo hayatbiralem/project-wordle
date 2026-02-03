@@ -5,15 +5,17 @@ import { WORDS } from '../../data';
 import GuessInput from '../GuessInput';
 import GuessResults from '../GuessResults';
 import Keyboard from '../Keyboard';
+import GameOverBanner from '../GameOverBanner';
 
 import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
 
 // Pick a random word on every pageload.
-const answer = sample(WORDS);
+const initialAnswer = sample(WORDS);
 // To make debugging easier, we'll log the solution in the console.
-console.info({ answer });
+console.info({ initialAnswer });
 
 function Game() {
+  const [answer, setAnswer] = useState(`${initialAnswer}`);
   const [guesses, setGuesses] = useState([]);
   const [status, setStatus] = useState('');
 
@@ -29,10 +31,19 @@ function Game() {
     }
   }
 
+  function restartGame() {
+    const nextAnswer = sample(WORDS);
+    console.info({ nextAnswer });
+    setAnswer(nextAnswer);
+    setGuesses([]);
+    setStatus('');
+  }
+
   return (
     <>
       <GuessResults guesses={guesses} answer={answer} />
-      <GuessInput addGuess={addGuess} guessesLength={guesses.length} status={status} />
+      {status === '' && <GuessInput addGuess={addGuess} status={status} />}
+      <GameOverBanner status={status} guessesLength={guesses.length} restartGame={restartGame} />
       <Keyboard guesses={guesses} answer={answer} />
     </>
   );

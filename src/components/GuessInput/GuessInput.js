@@ -2,9 +2,7 @@ import { useState } from 'react';
 
 import { NUM_OF_GUESS_LENGTH } from '../../constants';
 
-import Banner from '../Banner';
-
-function SubmitGuess({ addGuess, guessesLength, status }) {
+function SubmitGuess({ addGuess, status }) {
 
   const [guess, setGuess] = useState('');
 
@@ -44,17 +42,6 @@ function SubmitGuess({ addGuess, guessesLength, status }) {
         autoFocus={true}
       />
       <div className="guess-help">{helpText}</div>
-
-      {status === 'sad' && <Banner type="sad">
-        <p>Sorry, the correct answer was <strong>LEARN</strong>.</p>
-      </Banner>}
-
-      {status === 'happy' && <Banner type="happy">
-        <p>
-          <strong>Congratulations!</strong> Got it in{' '}
-          <strong>{guessesLength} guesses</strong>.
-        </p>
-      </Banner>}
     </form>
   );
 }
