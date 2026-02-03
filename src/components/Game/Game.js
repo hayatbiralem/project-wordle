@@ -4,6 +4,7 @@ import { sample } from '../../utils';
 import { WORDS } from '../../data';
 import GuessInput from '../GuessInput';
 import GuessResults from '../GuessResults';
+import Keyboard from '../Keyboard';
 
 import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
 
@@ -32,6 +33,7 @@ function Game() {
     <>
       <GuessResults guesses={guesses} answer={answer} />
       <GuessInput addGuess={addGuess} guessesLength={guesses.length} status={status} />
+      <Keyboard guesses={guesses} answer={answer} />
     </>
   );
 }
