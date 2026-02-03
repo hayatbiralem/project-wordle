@@ -1,6 +1,6 @@
 import Banner from '../Banner';
 
-function GameOverBanner({ status, guessesLength, restartGame }) {
+function GameOverBanner({ answer, status, guessesLength, restartGame }) {
 
   function RestartGameButton() {
     return <button autoFocus className="restart-button" onClick={restartGame}>Restart Game</button>;
@@ -8,7 +8,7 @@ function GameOverBanner({ status, guessesLength, restartGame }) {
 
   return <div>
     {status === 'sad' && <Banner type="sad">
-      <p>Sorry, the correct answer was <strong>LEARN</strong>.</p>
+      <p>Sorry, the correct answer was <strong>{answer}</strong>.</p>
       <RestartGameButton />
     </Banner>}
 

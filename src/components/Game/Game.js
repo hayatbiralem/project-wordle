@@ -43,7 +43,7 @@ function Game() {
     <>
       <GuessResults guesses={guesses} answer={answer} />
       {status === '' && <GuessInput addGuess={addGuess} status={status} />}
-      <GameOverBanner status={status} guessesLength={guesses.length} restartGame={restartGame} />
+      <GameOverBanner answer={answer} status={status} guessesLength={guesses.length} restartGame={restartGame} />
       <Keyboard guesses={guesses} answer={answer} />
     </>
   );
